@@ -211,7 +211,7 @@ const BlockButton = ({ format, icon }) => {
         toggleBlock(editor, format)
       }}
     >
-      icon
+      {icon}
     </button>
   )
 }

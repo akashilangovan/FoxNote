@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RecordRTC, {StereoAudioRecorder} from 'recordrtc';
-import { Outlet, Link,  } from "react-router-dom";
+import { Outlet, Link} from "react-router-dom";
 import "../App.css"
 import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils, SelectionState, Modifier, ContentState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
