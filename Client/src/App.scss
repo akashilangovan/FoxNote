@@ -45,6 +45,15 @@ $down_color_active: #2f2f2f;
 #topNav .right {
   float: right;
 }
+#logo {
+  background-image: url("assets/logo.png");
+  height: $nav_height;
+  width: $nav_height;
+  border-radius: 50%;
+  background-size: $nav_height $nav_height;
+  
+  overflow: hidden;
+}
 
 #body {
   background-color: orange;
@@ -75,7 +84,7 @@ $down_color_active: #2f2f2f;
   box-shadow: 2px 2px 4px #434343a5;
 }
 #start {
-  background-image: url("assets/img_play.png"); 
+  background-image: url("assets/img_record.png"); 
   background-color: $start_color;
   &:hover {
     background-color: $start_color_hover;

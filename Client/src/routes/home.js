@@ -23,7 +23,7 @@ const bulletItem = "unordered-list-item";
 
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
-  function doPlayPause() {
+  function doStartPause() {
     if (startpauseIcon == "start") {
       document.getElementById("start").id="pause";
       setStartpauseIcon("pause");
@@ -104,7 +104,7 @@ const Home = () => {
       <div id="body">
         <h1>Nodebuddy</h1>
         <div className="actions">
-          <div className="action" id="start" onClick={doPlayPause}>
+          <div className="action" id="start" onClick={doStartPause}>
             {/* Start/Pause */}
             {/* <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Freepik - Flaticon</a> */}
           </div>

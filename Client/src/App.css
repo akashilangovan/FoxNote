@@ -20,6 +20,15 @@
   float: right;
 }
 
+#logo {
+  background-image: url("assets/logo.png");
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-size: 45px 45px;
+  overflow: hidden;
+}
+
 #body {
   background-color: orange;
   padding: 20px 10px 20px 10px;
@@ -55,7 +64,7 @@
 }
 
 #start {
-  background-image: url("assets/img_play.png");
+  background-image: url("assets/img_record.png");
   background-color: #148d14;
 }
 
