@@ -121,21 +121,17 @@ $down_color_active: #2f2f2f;
   background-color: red;
   display: flex;                  /* establish flex container */
   flex-direction: row;            /* default value; can be omitted */
-  flex-wrap: nowrap;              /* default value; can be omitted */
+  flex-wrap: wrap;              /* default value; can be omitted */
   justify-content: space-between; /* switched from default (flex-start, see below) */
   background-color: lightyellow;
 }
 #content #live_wrapper {
-  left: 0px;
-  top: 0px;
   background-color: #117411;
-  width: 48%;
+  width: 100vw;
 }
 #content #summary_wrapper {
-  right: 0px;
-  top: 0px;
   background-color: purple;
-  width: 48%;
+  width: 100%;
 }
 .scroll {
   background-color: yellow;

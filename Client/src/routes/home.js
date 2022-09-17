@@ -119,6 +119,16 @@ const Home = () => {
         </div>
 
         <div id="content">
+          
+          <div id="summary_wrapper">
+            <h2>Summary</h2>
+            <div className="scroll">
+              {MyEditor()}
+            </div>
+            {/* {setEditorState(blockMap)} */}
+            Scroll to bottom
+            <div id="delete" onClick={doDelete}></div>
+          </div>
           <div id="live_wrapper">
             <h2>Live Transcription</h2>
             <div className="scroll">
@@ -127,19 +137,6 @@ const Home = () => {
             live data here
 
             Scroll to bottom
-          </div>
-          <div id="summary_wrapper">
-            <h2>Summary</h2>
-            <div className="scroll">
-              {MyEditor()}
-
-
-
-            </div>
-            
-            {/* {setEditorState(blockMap)} */}
-            Scroll to bottom
-            <div id="delete" onClick={doDelete}></div>
           </div>
         </div>
 
