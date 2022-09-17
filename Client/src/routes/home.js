@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, Link,  } from "react-router-dom";
 import "../App.css"
-import {Editor, EditorState, BlockMapBuilder, ContentBlock} from 'draft-js';
+import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 // import Immutable from "immutable.js"
 
@@ -21,7 +21,17 @@ function MyEditor() {
     () => EditorState.createEmpty(),
   );
 
-  return <Editor editorState={editorState} onChange={setEditorState} />;
+
+  function makeBullets(input) {
+    console.log(input);
+
+
+    setEditorState(input);
+
+
+  }
+
+  return <Editor editorState={editorState} onChange={makeBullets} />;
 }
 
 const Home = () => {
