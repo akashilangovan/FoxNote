@@ -1,0 +1,67 @@
+// body {
+//   padding: 0;
+// }
+
+$nav_height: 45px;
+
+
+#topNav {
+  position: sticky;
+  top: 0px;
+  background-color: red;
+  height: $nav_height;
+  padding: 0px 10px 0px 10px;
+}
+
+#topNav div {
+  height: $nav_height;
+  line-height: $nav_height;
+}
+#topNav .left {
+  float: left;
+}
+#topNav .right {
+  float: right;
+}
+
+#body {
+  background-color: orange;
+  padding: 20px 10px 20px 10px;
+}
+
+.actions {
+  background-color: #b1d5f4;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.actions .action {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.editor {
+  background-color: #726b5e;
+}
+
+#startpause {
+  background-image: url("assets/play.png"); 
+    overflow: hidden;
+    background-size: 50px 50px; //2em 2em;
+    // border: solid white 2px;
+    
+    // transform: rotate(90deg);
+
+    // background-image: url("arrow_white.png");
+}
+
+
+
+#footer {
+  background-color: #a17fa1;
+}
+
+
