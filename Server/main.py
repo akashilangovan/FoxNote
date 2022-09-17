@@ -49,15 +49,7 @@ Keywords: Anxiety, Judgement, Social
 --
 Transcript: 
 """
-@app.post("/wiki")
-def wiki(topic):
-    wiki_wiki = wikipediaapi.Wikipedia('en')
-    
-    page_py = wiki_wiki.page(topic)
-    if page_py.exists():
-        return({topic: page_py.fullurl})
-    else:
-        return {}
+
 
 
 @app.post("/")
