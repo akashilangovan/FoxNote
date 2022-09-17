@@ -22,22 +22,57 @@ $down_color: #434343;
 $down_color_hover: #7a7a7a;
 $down_color_active: #2f2f2f;
 
+$shadow: 1px 1px 5px #6565656b;
+$shadow_hover: 3px 3px 6px #9d9d9db9;
+$shadow_active: 2px 2px 4px #434343a5;
+
+$primary_color: #840684;
+$secondary_color: #e492e4;
+$white_color: #f6e6f6;
+
+$border_radius_default: 5px;
 
 
+/* width */
+::-webkit-scrollbar {
+  width: $border_radius_default * 2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: $border_radius_default;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: $border_radius_default;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary_color; 
+}
 
 
+div {
+  box-sizing: border-box;
+}
 
 #topNav {
   position: sticky;
   top: 0px;
-  background-color: red;
+  background-color: $primary_color;
   height: $nav_height;
   padding: 0px 10px 0px 10px;
+  z-index: 100;
 }
 
 #topNav div {
   height: $nav_height;
   line-height: $nav_height;
+  color: white;
 }
 #topNav .left {
   float: left;
@@ -45,18 +80,24 @@ $down_color_active: #2f2f2f;
 #topNav .right {
   float: right;
 }
+#topNav #header {
+  text-transform: uppercase;
+  font-weight: 900;
+
+}
+
 #logo {
   background-image: url("assets/logo.png");
   height: $nav_height;
   width: $nav_height;
   border-radius: 50%;
   background-size: $nav_height $nav_height;
+  margin-right: 20px;
   
   overflow: hidden;
 }
 
 #body {
-  background-color: orange;
   padding: 20px 10px 20px 10px;
 }
 
@@ -73,16 +114,18 @@ $down_color_active: #2f2f2f;
   background-size: $icon_size $icon_size;
   
   overflow: hidden;
-  box-shadow: 1px 1px 5px #6565656b;
+  
 
   transition: all 0.34s;
+  box-shadow: $shadow;
+  &:hover {
+    box-shadow: $shadow_hover;
+  }
+  &:active {
+    box-shadow: 2px 2px 4px #434343a5;
+  }
 }
-.actions .action:hover {
-  box-shadow: 3px 3px 6px #9d9d9db9;
-}
-.actions .action:active {
-  box-shadow: 2px 2px 4px #434343a5;
-}
+
 #start {
   background-image: url("assets/img_record.png"); 
   background-color: $start_color;
@@ -127,28 +170,36 @@ $down_color_active: #2f2f2f;
 
 
 #content {
-  background-color: red;
   display: flex;                  /* establish flex container */
   flex-direction: row;            /* default value; can be omitted */
   flex-wrap: wrap;              /* default value; can be omitted */
   justify-content: space-between; /* switched from default (flex-start, see below) */
-  background-color: lightyellow;
 }
-#content #live_wrapper {
-  background-color: #117411;
+#content .cont {
   width: 100vw;
-}
-#content #summary_wrapper {
-  background-color: purple;
+  background-color: $secondary_color;
+  border-radius: $border_radius_default;
+  margin-bottom: 20px;
   width: 100%;
+  padding: 5px;
 }
+// #content #live_wrapper {
+  
+// }
+// #content #summary_wrapper {
+//   width: 100%;
+  
+// }
 .scroll {
-  background-color: yellow;
   height: 200px;
   overflow-y: scroll;
   width: 100% !important;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 10px;
+  background-color: $white_color;
+  border-radius: $border_radius_default;
+
 }
 
 
@@ -160,7 +211,7 @@ $down_color_active: #2f2f2f;
   border: solid 1px black;
 }
 #delete {
-  background-color: #a98787;
+  background-color: $end_color;
   height: 20px;
   width: 20px;
   position: relative;
@@ -168,11 +219,19 @@ $down_color_active: #2f2f2f;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 50%;
-  background-image: url("assets/img_delete.png"); 
+  background-image: url("assets/img_delete.png");
   background-size: 20px 20px;
   overflow: hidden;
+  box-shadow: $shadow;
+  transition: all 0.34s;
   &:hover {
+    box-shadow: $shadow_hover;
+    background-color: $end_color_hover;
     background-image: url("assets/img_delete_hover.png"); 
+  }
+  &:active {
+    box-shadow: 2px 2px 4px #434343a5;
+    background-color: $end_color_active;
   }
 }
 

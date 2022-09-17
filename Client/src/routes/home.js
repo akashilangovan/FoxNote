@@ -164,6 +164,10 @@ const Home = () => {
     },
   ]
 
+  function addBullet(string) {
+    
+  }
+  
   function MyEditor() { 
     return (
       <RichTextEditor/>
@@ -198,7 +202,7 @@ const Home = () => {
   return (
     <>
       <div id="body">
-        <h1>Nodebuddy</h1>
+        {/* <h1>Nodebuddy</h1> */}
         <div className="actions">
           <div className="action" id="start" onClick={doStartPause}>
             {/* Start/Pause */}
@@ -215,23 +219,24 @@ const Home = () => {
         </div>
 
         <div id="content">
-          <div id="summary_wrapper">
+          
+          <div class="cont" id="summary_wrapper">
             <h2>Summary</h2>
             <div className="scroll">
               {MyEditor()}
             </div>
             {/* {setEditorState(blockMap)} */}
-            Scroll to bottom
+            {/* Scroll to bottom */}
             <div id="delete" onClick={doDelete}></div>
           </div>
-          <div id="live_wrapper">
+          <div class="cont" id="live_wrapper">
             <h2>Live Transcription</h2>
             <div className="scroll">
               {liveTranscript}
             </div>
-            live data here
+            {/* live data here */}
 
-            Scroll to bottom
+            {/* Scroll to bottom */}
           </div>
         </div>
       </div>

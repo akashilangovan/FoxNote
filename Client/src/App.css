@@ -1,15 +1,45 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #840684;
+}
+
+div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 #topNav {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
-  background-color: red;
+  background-color: #840684;
   height: 45px;
   padding: 0px 10px 0px 10px;
+  z-index: 100;
 }
 
 #topNav div {
   height: 45px;
   line-height: 45px;
+  color: white;
 }
 
 #topNav .left {
@@ -20,17 +50,22 @@
   float: right;
 }
 
+#topNav #header {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
 #logo {
   background-image: url("assets/logo.png");
   height: 45px;
   width: 45px;
   border-radius: 50%;
   background-size: 45px 45px;
+  margin-right: 20px;
   overflow: hidden;
 }
 
 #body {
-  background-color: orange;
   padding: 20px 10px 20px 10px;
 }
 
@@ -47,10 +82,10 @@
   margin-top: 10px;
   background-size: 45px 45px;
   overflow: hidden;
-  -webkit-box-shadow: 1px 1px 5px #6565656b;
-          box-shadow: 1px 1px 5px #6565656b;
   -webkit-transition: all 0.34s;
   transition: all 0.34s;
+  -webkit-box-shadow: 1px 1px 5px #6565656b;
+          box-shadow: 1px 1px 5px #6565656b;
 }
 
 .actions .action:hover {
@@ -116,7 +151,6 @@
 }
 
 #content {
-  background-color: red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -133,26 +167,26 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   /* switched from default (flex-start, see below) */
-  background-color: lightyellow;
 }
 
-#content #live_wrapper {
-  background-color: #117411;
+#content .cont {
   width: 100vw;
-}
-
-#content #summary_wrapper {
-  background-color: purple;
+  background-color: #e492e4;
+  border-radius: 5px;
+  margin-bottom: 20px;
   width: 100%;
+  padding: 5px;
 }
 
 .scroll {
-  background-color: yellow;
   height: 200px;
   overflow-y: scroll;
   width: 100% !important;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f6e6f6;
+  border-radius: 5px;
 }
 
 .editor {
@@ -161,7 +195,7 @@
 }
 
 #delete {
-  background-color: #a98787;
+  background-color: #ec6161;
   height: 20px;
   width: 20px;
   position: relative;
@@ -172,10 +206,23 @@
   background-image: url("assets/img_delete.png");
   background-size: 20px 20px;
   overflow: hidden;
+  -webkit-box-shadow: 1px 1px 5px #6565656b;
+          box-shadow: 1px 1px 5px #6565656b;
+  -webkit-transition: all 0.34s;
+  transition: all 0.34s;
 }
 
 #delete:hover {
+  -webkit-box-shadow: 3px 3px 6px #9d9d9db9;
+          box-shadow: 3px 3px 6px #9d9d9db9;
+  background-color: #f37d7d;
   background-image: url("assets/img_delete_hover.png");
+}
+
+#delete:active {
+  -webkit-box-shadow: 2px 2px 4px #434343a5;
+          box-shadow: 2px 2px 4px #434343a5;
+  background-color: #d65252;
 }
 
 #footer {
