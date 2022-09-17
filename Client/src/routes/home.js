@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import RecordRTC, {StereoAudioRecorder} from 'recordrtc';
 import { Outlet, Link,  } from "react-router-dom";
 import "../App.css"
 import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils, SelectionState, Modifier, ContentState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { createEditor } from 'slate'
+import { Slate, Editable, withReact } from 'slate-react'
+import RichTextEditor from '../editor';
+
 // import {toggleBlockType} from RichUtils;
 // import Immutable from "immutable.js"
 
@@ -15,14 +20,115 @@ import 'draft-js/dist/Draft.css';
 //   }
 // });
 
-
 const bulletItem = "unordered-list-item";
-
-
-
 
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
+  const [restart, setRestart] = useState(false)
+
+  let isRecording = false;
+  let socket;
+  let recorder;
+  let seenAudioEndTimes = []
+  let msgBuffer = ''
+
+  useEffect(() => {
+    console.log("Running record")
+    if (isRecording) { 
+
+    } else {
+      const startSocket = async () => {
+        const tkResponse = await fetch('http://localhost:8000/token/'); // get temp session token from server.js (backend)
+        const data = await tkResponse.json();
+        console.log("Trying to start new stream")
+        socket = await new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${data['token']}`);
+        console.log("Started new stream")
+
+        const texts = {};
+        socket.onmessage = (message) => {
+          const res = JSON.parse(message.data);
+          console.log(res)
+          if (res.message_type == "FinalTranscript") {
+            texts[res.audio_start] = res.text;
+            const keys = Object.keys(texts);
+            keys.sort((a, b) => a - b);
+            for (const key of keys) {
+              if (key in seenAudioEndTimes) {
+              } else {
+                seenAudioEndTimes.push(key)
+                if (texts[key]) {
+                  msgBuffer = msgBuffer + " " + texts[key]
+                }
+              }
+            }
+            while (msgBuffer.split(".").length > 5) {
+              console.log(msgBuffer)
+              message = msgBuffer.split(".").slice(0, 5).join(".")
+              console.log("MESG", message)
+              let dataObj = {"transcript": message}
+              fetch("http://localhost:8000/summarize/?transcript=" + encodeURIComponent(message), {
+                method: "GET"
+              }).then(res => {
+                return res.json()
+              }).then(data => {
+                console.log(data)
+              });
+              msgBuffer = msgBuffer.split(".").slice(5).join(".")
+            }
+          }
+        }
+
+        socket.onerror = (event) => {
+          console.error(event);
+          socket.close();
+          if (event.error = "Audio duration is too long") {
+            setRestart(!restart)
+          }
+          isRecording = false;
+        }
+        
+        socket.onclose = event => {
+          console.log(event);
+          socket = null;
+          isRecording = false;
+        }
+
+        socket.onopen = () => {
+          // once socket is open, begin recording
+          navigator.mediaDevices.getUserMedia({ audio: true })
+            .then((stream) => {
+              recorder = new RecordRTC(stream, {
+                type: 'audio',
+                mimeType: 'audio/webm;codecs=pcm', // endpoint requires 16bit PCM audio
+                recorderType: StereoAudioRecorder,
+                timeSlice: 1000, // set 250 ms intervals of data that sends to AAI
+                desiredSampRate: 16000,
+                numberOfAudioChannels: 1, // real-time requires only one channel
+                bufferSize: 4096,
+                audioBitsPerSecond: 128000,
+                ondataavailable: (blob) => {
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    const base64data = reader.result;
+                    // audio data must be sent as a base64 encoded string
+                    if (socket) {
+                      socket.send(JSON.stringify({ audio_data: base64data.split('base64,')[1] }));
+                    }
+                  };
+                  reader.readAsDataURL(blob);
+                },
+              });
+    
+              recorder.startRecording();
+            })
+            .catch((err) => console.error(err));
+        };
+      }
+      isRecording = true;
+      startSocket()
+    }
+  }, [restart])
+
   function doStartPause() {
     if (startpauseIcon == "start") {
       document.getElementById("start").id="pause";
@@ -33,13 +139,10 @@ const Home = () => {
     }
   }
 
-
   const [liveTranscript, setLiveTranscript] = React.useState("He today. We're starting a new chapter, chapter four, about the time value of money, which is something that we tal");
   function updateLiveTranscript(newString) {
     setLiveTranscript(liveTranscript + newString);
   }
-
-
 
   const [editorState, setEditorState] = React.useState(
     () => EditorState.createEmpty(),
@@ -51,16 +154,23 @@ const Home = () => {
       setEditorState(input);
       var objDiv = document.getElementById("summary_wrapper");
       objDiv.scrollTop = objDiv.scrollHeight;
-
-
     }
   }
+
+  const initialValue = [
+    {
+      type: 'paragraph',
+      children: [{ text: 'A line of text in a paragraph.' }],
+    },
+  ]
+
   function MyEditor() { 
-    return <Editor editorState={editorState} onChange={makeBullets} />;
+    return (
+      <RichTextEditor/>
+    )
   }
   
   function doDelete() {
-
     let contentState = editorState.getCurrentContent();
     var last = contentState.getLastBlock();
     var blockArray = contentState.getBlocksAsArray();
@@ -68,12 +178,7 @@ const Home = () => {
     var newContentState = ContentState.createFromBlockArray(blockArray);
     var newEditorState = EditorState.createWithContent(newContentState)
     makeBullets(newEditorState);
-
-
-
   };
-
-  
 
   // var blockArray = []
 
@@ -88,16 +193,7 @@ const Home = () => {
 
   // const blockMap = BlockMapBuilder.createFromArray(blockArray)
 
-
-
-
   // setEditorState(blockMap)
-
-
-
-
-
-
 
   return (
     <>
@@ -119,7 +215,6 @@ const Home = () => {
         </div>
 
         <div id="content">
-          
           <div id="summary_wrapper">
             <h2>Summary</h2>
             <div className="scroll">
@@ -139,11 +234,6 @@ const Home = () => {
             Scroll to bottom
           </div>
         </div>
-
-
-
-
-
       </div>
     </>
   )
