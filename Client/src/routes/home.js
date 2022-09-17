@@ -1,36 +1,67 @@
 import React, { useState } from 'react';
 import { Outlet, Link,  } from "react-router-dom";
 import "../App.css"
-import {Editor, EditorState} from 'draft-js';
+import {Editor, EditorState, BlockMapBuilder, ContentBlock} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+// import Immutable from "immutable.js"
+
+// const blockRenderMap = Immutable.Map({
+//   'header-two': {
+//     element: 'h2'
+//   },
+//   'unstyled': {
+//     element: 'ul'
+//   }
+// });
+
+
 
 function MyEditor() {
   const [editorState, setEditorState] = React.useState(
     () => EditorState.createEmpty(),
   );
 
-  return <Editor editorState={editorState} onChange={setEditorState} className="editor" />;
+  return <Editor editorState={editorState} onChange={setEditorState} />;
 }
 
-
-
-
-
-
-
-
-
 const Home = () => {
-  const [startpauseIcon, setStartpauseIcon] = React.useState("start")
+  const [startpauseIcon, setStartpauseIcon] = React.useState("start");
   function doPlayPause() {
     if (startpauseIcon == "start") {
-      document.getElementById("start").id="pause"
-      setStartpauseIcon("pause")
+      document.getElementById("start").id="pause";
+      setStartpauseIcon("pause");
     } else {
-      document.getElementById("pause").id="start"
-      setStartpauseIcon("start")
+      document.getElementById("pause").id="start";
+      setStartpauseIcon("start");
     }
   }
+
+
+  const [liveTranscript, setLiveTranscript] = React.useState("He today. We're starting a new chapter, chapter four, about the time value of money, which is something that we tal");
+  function updateLiveTranscript(newString) {
+    setLiveTranscript(liveTranscript + newString);
+  }
+
+  
+
+  // var blockArray = []
+
+  // var newTexts = ["hello", "text", "testing"]
+  // for (let i in newTexts) {
+  //   var newContentBlock = new ContentBlock({
+  //     type: "unorderd-list-item",
+  //     text: "texttttt1",
+  //   })
+  //   blockArray.push(newContentBlock)
+  // }
+
+  // const blockMap = BlockMapBuilder.createFromArray(blockArray)
+
+
+
+
+  // setEditorState(blockMap)
+
 
 
 
@@ -57,31 +88,33 @@ const Home = () => {
         </div>
 
         <div id="content">
-          <div id="live">
+          <div id="live_wrapper">
             <h2>Live Transcription</h2>
+            <div className="scroll">
+              {liveTranscript}
+            </div>
             live data here
 
-            {/* {MyEditor()} */}
-            bottom
+            Scroll to bottom
           </div>
-          <div id="bullets">
+          <div id="summary_wrapper">
             <h2>Summary</h2>
-            bullets here
+            <div className="scroll">
+
+
+
+            </div>
+            {MyEditor()}
+            {/* {setEditorState(blockMap)} */}
+            Scroll to bottom
           </div>
         </div>
-
-
-        <p>top</p>
-        {MyEditor()}
-        <p>btm</p>
-        {/* <Editor editorState={this.state.editorState} onChange={this.onChange} /> */}
 
 
 
 
 
       </div>
-      
     </>
   )
 };

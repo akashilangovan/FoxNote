@@ -127,22 +127,27 @@
   background-color: lightyellow;
 }
 
-#content div {
-  width: 48%;
-  overflow: scroll;
-  height: 300px;
-}
-
-#content #live {
+#content #live_wrapper {
   left: 0px;
   top: 0px;
   background-color: #117411;
+  width: 48%;
 }
 
-#content #bullets {
+#content #summary_wrapper {
   right: 0px;
   top: 0px;
   background-color: purple;
+  width: 48%;
+}
+
+.scroll {
+  background-color: yellow;
+  height: 200px;
+  overflow-y: scroll;
+  width: 100% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .editor {
