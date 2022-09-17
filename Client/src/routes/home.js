@@ -3,6 +3,7 @@ import { Outlet, Link,  } from "react-router-dom";
 import "../App.css"
 import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+// import {toggleBlockType} from RichUtils;
 // import Immutable from "immutable.js"
 
 // const blockRenderMap = Immutable.Map({
@@ -15,6 +16,9 @@ import 'draft-js/dist/Draft.css';
 // });
 
 
+const bulletItem = "unordered-list-item";
+
+
 
 function MyEditor() {
   const [editorState, setEditorState] = React.useState(
@@ -23,11 +27,14 @@ function MyEditor() {
 
 
   function makeBullets(input) {
-    console.log(input);
 
+    if (RichUtils.getCurrentBlockType(input) != bulletItem) {
+      setEditorState(RichUtils.toggleBlockType(input, bulletItem));
+    } else {
+      setEditorState(input);
+    }
 
-    setEditorState(input);
-
+    
 
   }
 
