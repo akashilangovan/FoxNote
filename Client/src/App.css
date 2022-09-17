@@ -164,6 +164,13 @@
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 50%;
+  background-image: url("assets/img_delete.png");
+  background-size: 20px 20px;
+  overflow: hidden;
+}
+
+#delete:hover {
+  background-image: url("assets/img_delete_hover.png");
 }
 
 #footer {
