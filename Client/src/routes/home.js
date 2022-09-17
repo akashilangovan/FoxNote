@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, Link,  } from "react-router-dom";
 import "../App.css"
-import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils} from 'draft-js';
+import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils, SelectionState, Modifier, ContentState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 // import {toggleBlockType} from RichUtils;
 // import Immutable from "immutable.js"
@@ -20,26 +20,6 @@ const bulletItem = "unordered-list-item";
 
 
 
-function MyEditor() {
-  const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty(),
-  );
-
-
-  function makeBullets(input) {
-
-    if (RichUtils.getCurrentBlockType(input) != bulletItem) {
-      setEditorState(RichUtils.toggleBlockType(input, bulletItem));
-    } else {
-      setEditorState(input);
-    }
-
-    
-
-  }
-
-  return <Editor editorState={editorState} onChange={makeBullets} />;
-}
 
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
@@ -58,6 +38,87 @@ const Home = () => {
   function updateLiveTranscript(newString) {
     setLiveTranscript(liveTranscript + newString);
   }
+
+
+
+  const [editorState, setEditorState] = React.useState(
+    () => EditorState.createEmpty(),
+  );
+  function MyEditor() {
+    function makeBullets(input) {
+      if (RichUtils.getCurrentBlockType(input) != bulletItem) {
+        setEditorState(RichUtils.toggleBlockType(input, bulletItem));
+      } else {
+        setEditorState(input);
+      }
+    }
+    return <Editor editorState={editorState} onChange={makeBullets} />;
+  }
+  
+  function doDelete() {
+    console.log("delete");
+
+    // editorState.getBlockTree();
+
+    // console.log(setEditorState())
+  
+    let contentState = editorState.getCurrentContent();
+    const block = contentState.getBlockMap().first();
+    const next = contentState.getBlockAfter(block.getKey());
+
+
+    const last = contentState.getLastBlock();
+    // console.log(contentState.getBlocksAsArray());
+
+    var blockArray = contentState.getBlocksAsArray();
+    blockArray.pop();
+    console.log(blockArray);
+    console.log("))))");
+    var newContentState = ContentState.createFromBlockArray(blockArray);
+    console.log("))))");
+    setEditorState(newContentState);
+
+
+
+
+
+    // if (block && next) {
+    //   const text = next.getText();
+    //   const pos = block.getText().length;
+    //   const insertSelection = SelectionState.createEmpty(block.getKey()).merge({
+    //     anchorOffset: pos,
+    //     focusOffset: pos
+    //   });
+    //   let newContentState = Modifier.insertText(
+    //     contentState,
+    //     insertSelection,
+    //     text
+    //   );
+
+    //   const removeSelection = SelectionState.createEmpty();
+
+    //   // ---- OPTION 1 ----
+    //   newContentState = Modifier.removeRange(
+    //     newContentState,
+    //     removeSelection,
+    //     "backward" // "backward"
+    //   );
+
+    //   // ---- OPTION 2 ----
+    //   // newContentState = Modifier.applyEntity(
+    //   //   newContentState,
+    //   //   removeSelection,
+    //   //   null
+    //   // );
+
+    //   const newEditorState = EditorState.push(
+    //     editorState,
+    //     newContentState,
+    //     "insert-characters"
+    //   );
+    //   setEditorState(newEditorState);
+    // }
+  };
 
   
 
@@ -117,13 +178,15 @@ const Home = () => {
           <div id="summary_wrapper">
             <h2>Summary</h2>
             <div className="scroll">
+              {MyEditor()}
 
 
 
             </div>
-            {MyEditor()}
+            
             {/* {setEditorState(blockMap)} */}
             Scroll to bottom
+            <div id="delete" onClick={doDelete}></div>
           </div>
         </div>
 

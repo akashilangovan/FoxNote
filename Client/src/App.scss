@@ -154,7 +154,16 @@ $down_color_active: #2f2f2f;
   background-color: #726b5e;
   border: solid 1px black;
 }
-
+#delete {
+  background-color: #a98787;
+  height: 20px;
+  width: 20px;
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 50%;
+}
 
 
 
