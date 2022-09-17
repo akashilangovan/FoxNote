@@ -38,9 +38,6 @@ def summarize(transcript: str):
     num_generations=1,
     )
 
-    # engineered_response = response.generations[0].text.split("--")
-    # print(engineered_response)
-    # return {engineered_response[0]}
     return {response.generations[0].text[:-2]}
 
 
