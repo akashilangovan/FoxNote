@@ -14,8 +14,8 @@ function App() {
   return (
     <div>
       <div id="topNav">
-        <div className="left" id="logo"></div>
-        <Link to="/home"><div className="left">Nodebuddy</div></Link>
+        <Link to="/home"><div className="left" id="logo"></div></Link>
+        <Link to="/home"><div className="left" id="header">Nodebuddy</div></Link>
         <Link to="/about"><div className="right">about</div></Link>
       </div>
 
