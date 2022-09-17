@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
-
+import requests
 app = FastAPI()
 
 PROMPT = """
@@ -34,13 +34,13 @@ def summarize(transcript: str):
     prompt=engineered_prompt,
     stop_sequences=['--'],
     max_tokens=50,
-    temperature=0.8,
+    temperature=0.65,
     num_generations=1,
     )
-
-    # engineered_response = response.generations[0].text.split("--")
-    # print(engineered_response)
-    # return {engineered_response[0]}
-    return {response.generations[0].text[:-2]}
-
+@app.post("/token/")
+def getToken():
+    PARAMS = {'expires_in':3600}
+    HEADERS = {'authorization':'1298b52db56e479f8363db36d5c0e8dc'} 
+    response = requests.post('https://api.assemblyai.com/v2/realtime/token', headers = HEADERS, json=PARAMS)
+    return response.json()
 
