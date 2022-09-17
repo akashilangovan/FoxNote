@@ -26,28 +26,128 @@
 }
 
 .actions {
-  background-color: #b1d5f4;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
 }
 
 .actions .action {
-  background-color: red;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   margin-top: 10px;
+  background-size: 45px 45px;
+  overflow: hidden;
+  -webkit-box-shadow: 1px 1px 5px #6565656b;
+          box-shadow: 1px 1px 5px #6565656b;
+  -webkit-transition: all 0.34s;
+  transition: all 0.34s;
+}
+
+.actions .action:hover {
+  -webkit-box-shadow: 3px 3px 6px #9d9d9db9;
+          box-shadow: 3px 3px 6px #9d9d9db9;
+}
+
+.actions .action:active {
+  -webkit-box-shadow: 2px 2px 4px #434343a5;
+          box-shadow: 2px 2px 4px #434343a5;
+}
+
+#start {
+  background-image: url("assets/img_play.png");
+  background-color: #148d14;
+}
+
+#start:hover {
+  background-color: #33af33;
+}
+
+#start:active {
+  background-color: #117411;
+}
+
+#pause {
+  background-image: url("assets/img_pause.png");
+  background-color: #dbc900;
+}
+
+#pause:hover {
+  background-color: #f1e23a;
+}
+
+#pause:active {
+  background-color: #dbb700;
+}
+
+#end {
+  background-image: url("assets/img_stop.png");
+  background-color: #ec6161;
+}
+
+#end:hover {
+  background-color: #f37d7d;
+}
+
+#end:active {
+  background-color: #d65252;
+}
+
+#down {
+  background-image: url("assets/img_download.png");
+  background-color: #434343;
+}
+
+#down:hover {
+  background-color: #7a7a7a;
+}
+
+#down:active {
+  background-color: #2f2f2f;
+}
+
+#content {
+  background-color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* establish flex container */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  /* default value; can be omitted */
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  /* default value; can be omitted */
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* switched from default (flex-start, see below) */
+  background-color: lightyellow;
+}
+
+#content div {
+  width: 48%;
+  overflow: scroll;
+  height: 300px;
+}
+
+#content #live {
+  left: 0px;
+  top: 0px;
+  background-color: #117411;
+}
+
+#content #bullets {
+  right: 0px;
+  top: 0px;
+  background-color: purple;
 }
 
 .editor {
   background-color: #726b5e;
-}
-
-#startpause {
-  background-image: url("assets/play.png");
-  overflow: hidden;
-  background-size: 50px 50px;
+  border: solid 1px black;
 }
 
 #footer {

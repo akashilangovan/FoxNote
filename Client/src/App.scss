@@ -3,6 +3,28 @@
 // }
 
 $nav_height: 45px;
+$icon_size: 45px;
+
+
+$start_color: #148d14;
+$start_color_hover: #33af33;
+$start_color_active: #117411;
+
+$pause_color: #dbc900;
+$pause_color_hover: #f1e23a;
+$pause_color_active: #dbb700;
+
+$end_color: #ec6161;
+$end_color_hover: #f37d7d;
+$end_color_active: #d65252;
+
+$down_color: #434343;
+$down_color_hover: #7a7a7a;
+$down_color_active: #2f2f2f;
+
+
+
+
 
 
 #topNav {
@@ -30,33 +52,104 @@ $nav_height: 45px;
 }
 
 .actions {
-  background-color: #b1d5f4;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
 }
 .actions .action {
-  background-color: red;
-  width: 50px;
-  height: 50px;
+  width: $icon_size;
+  height: $icon_size;
   border-radius: 50%;
   margin-top: 10px;
+  background-size: $icon_size $icon_size;
+  
+  overflow: hidden;
+  box-shadow: 1px 1px 5px #6565656b;
+
+  transition: all 0.34s;
 }
+.actions .action:hover {
+  box-shadow: 3px 3px 6px #9d9d9db9;
+}
+.actions .action:active {
+  box-shadow: 2px 2px 4px #434343a5;
+}
+#start {
+  background-image: url("assets/img_play.png"); 
+  background-color: $start_color;
+  &:hover {
+    background-color: $start_color_hover;
+  }
+  &:active {
+    background-color: $start_color_active;
+  }
+}
+#pause {
+  background-image: url("assets/img_pause.png"); 
+  background-color: $pause_color;
+  &:hover {
+    background-color: $pause_color_hover;
+  }
+  &:active {
+    background-color: $pause_color_active;
+  }
+}
+#end {
+  background-image: url("assets/img_stop.png"); 
+  background-color: $end_color;
+  &:hover {
+    background-color: $end_color_hover;
+  }
+  &:active {
+    background-color: $end_color_active;
+  }
+}
+#down {
+  background-image: url("assets/img_download.png"); 
+  background-color: $down_color;
+  &:hover {
+    background-color: $down_color_hover;
+  }
+  &:active {
+    background-color: $down_color_active;
+  }
+}
+
+
+
+#content {
+  background-color: red;
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  background-color: lightyellow;
+}
+#content div {
+  width: 48%;
+  overflow: scroll;
+  height: 300px;
+}
+#content #live {
+  left: 0px;
+  top: 0px;
+  background-color: #117411;
+}
+#content #bullets {
+  right: 0px;
+  top: 0px;
+  background-color: purple;
+}
+
+
+
+
 
 .editor {
   background-color: #726b5e;
+  border: solid 1px black;
 }
 
-#startpause {
-  background-image: url("assets/play.png"); 
-    overflow: hidden;
-    background-size: 50px 50px; //2em 2em;
-    // border: solid white 2px;
-    
-    // transform: rotate(90deg);
-
-    // background-image: url("arrow_white.png");
-}
 
 
 
