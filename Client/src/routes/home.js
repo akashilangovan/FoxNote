@@ -178,8 +178,7 @@ const Home = () => {
       setEditorState(RichUtils.toggleBlockType(input, bulletItem));
     } else {
       setEditorState(input);
-      var objDiv = document.getElementById("summary_wrapper");
-      objDiv.scrollTop = objDiv.scrollHeight;
+     
     }
   }
 
