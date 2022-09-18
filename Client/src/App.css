@@ -34,7 +34,7 @@ div {
   top: 0px;
   background-color: #ffffff;
   height: 45px;
-  padding: 0px 20px 50px 10px;
+  padding: 0px 20px 0px 10px;
   z-index: 100;
   border-bottom: 1.5px solid grey;
 }
@@ -43,6 +43,10 @@ div {
   height: 45px;
   line-height: 45px;
   color: black;
+  transition: all 0.34s;
+}
+#topNav div:hover {
+  color: #7CA6FF;
 }
 
 #topNav .left {
@@ -53,6 +57,7 @@ div {
 #topNav .right {
   font-size: 14.4px;
   float: right;
+  margin-left: 27px;
 }
 
 #topNav #header {
@@ -61,10 +66,9 @@ div {
 }
 
 #logo {
-  background-image: url("assets/logo.png");
+  background-image: url("assets/img_logo.png");
   height: 45px;
   width: 45px;
-  border-radius: 50%;
   background-size: 45px 45px;
   margin-right: 20px;
   overflow: hidden;
@@ -104,13 +108,13 @@ body {
 
 #start {
   background-image: url("assets/img_record.png");
-  background-color: #148d14;
+  background-color: #ec6161;
 }
 #start:hover {
-  background-color: #33af33;
+  background-color: #f37d7d;
 }
 #start:active {
-  background-color: #117411;
+  background-color: #d65252;
 }
 
 #pause {
@@ -124,26 +128,26 @@ body {
   background-color: #dbb700;
 }
 
-#end {
-  background-image: url("assets/img_stop.png");
-  background-color: #ec6161;
+#cc {
+  background-image: url("assets/img_cc.png");
+  background-color: #b7b7b7;
 }
-#end:hover {
-  background-color: #f37d7d;
+#cc:hover {
+  background-color: #d7d7d7;
 }
-#end:active {
-  background-color: #d65252;
+#cc:active {
+  background-color: #7e7e7e;
 }
 
 #down {
   background-image: url("assets/img_download.png");
-  background-color: #434343;
+  background-color: #b7b7b7;
 }
 #down:hover {
-  background-color: #7a7a7a;
+  background-color: #d7d7d7;
 }
 #down:active {
-  background-color: #2f2f2f;
+  background-color: #7e7e7e;
 }
 
 .text-button {
@@ -151,12 +155,14 @@ body {
   color: inherit;
   background-color: white;
   padding-top: 5px;
+  transition: all 0.34s;
+  border-radius: 5px;
 }
 .text-button:hover {
-  background-color: #EDEDED;
+  background-color: #b7b7b7;
 }
 .text-button:active {
-  background-color: rgb(255, 182, 46);
+  background-color: #7CA6FF;
 }
 
 #content {
@@ -179,10 +185,10 @@ body {
 }
 
 .scroll {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 250px);
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100% !important;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
   background-color: #ffffff;
@@ -205,33 +211,13 @@ body {
   border: solid 1px black;
 }
 
-#delete {
-  background-color: #ec6161;
-  height: 20px;
-  width: 20px;
-  position: relative;
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 50%;
-  background-image: url("assets/img_delete.png");
-  background-size: 20px 20px;
-  overflow: hidden;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7254901961);
-  transition: all 0.34s;
-}
-#delete:hover {
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5098039216);
-  background-color: #f37d7d;
-  background-image: url("assets/img_delete_hover.png");
-}
-#delete:active {
-  box-shadow: 2px 2px 4px rgba(67, 67, 67, 0.6470588235);
-  background-color: #d65252;
-}
-
 #footer {
   background-color: #a17fa1;
+}
+
+.subtitle {
+  padding-top: 20px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=App.css.map */

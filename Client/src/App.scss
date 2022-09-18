@@ -4,27 +4,37 @@ $nav_height: 45px;
 $icon_size: 45px;
 
 
-$start_color: #148d14;
-$start_color_hover: #33af33;
-$start_color_active: #117411;
+// $start_color: #148d14;
+// $start_color_hover: #33af33;
+// $start_color_active: #117411;
+
+$start_color: #ec6161;
+$start_color_hover: #f37d7d;
+$start_color_active: #d65252;
 
 $pause_color: #dbc900;
 $pause_color_hover: #f1e23a;
 $pause_color_active: #dbb700;
 
-$end_color: #ec6161;
-$end_color_hover: #f37d7d;
-$end_color_active: #d65252;
 
-$down_color: #434343;
-$down_color_hover: #7a7a7a;
-$down_color_active: #2f2f2f;
+
+// $end_color: #ec6161;
+// $end_color_hover: #f37d7d;
+// $end_color_active: #d65252;
+
+$down_color: #b7b7b7;
+$down_color_hover: #d7d7d7;
+$down_color_active: #7e7e7e;
+
+$cc_color: $down_color;
+$cc_color_hover: $down_color_hover;
+$cc_color_active: $down_color_active;
 
 $shadow: 1px 1px 5px #000000b9;
 $shadow_hover: 3px 3px 6px #00000082;
 $shadow_active: 2px 2px 4px #000000de;
 
-$accent_color: rgb(255, 182, 46);
+$accent_color: #7CA6FF;
 
 // $primary_color: #141414;
 // $secondary_color: #3f3f3f;
@@ -81,7 +91,7 @@ div {
   top: 0px;
   background-color: $primary_color;
   height: $nav_height;
-  padding: 0px 20px 50px 10px;
+  padding: 0px 20px 0px 10px;
   z-index: 100;
   border-bottom: 1.5px solid grey;
 }
@@ -90,6 +100,10 @@ div {
   height: $nav_height;
   line-height: $nav_height;
   color: black;
+  transition: all 0.34s;
+  &:hover{
+    color: $accent_color;
+  }
 }
 #topNav .left {
   float: left;
@@ -98,6 +112,7 @@ div {
 #topNav .right {
   font-size: $nav_height * 0.32;
   float: right;
+  margin-left: $nav_height * 0.6;
 }
 #topNav #header {
   text-transform: uppercase;
@@ -106,10 +121,10 @@ div {
 }
 
 #logo {
-  background-image: url("assets/logo.png");
+  background-image: url("assets/img_logo.png");
   height: $nav_height;
   width: $nav_height;
-  border-radius: 50%;
+  // border-radius: 50%;
   background-size: $nav_height $nav_height;
   margin-right: 20px;
   
@@ -169,14 +184,24 @@ body {
     background-color: $pause_color_active;
   }
 }
-#end {
-  background-image: url("assets/img_stop.png"); 
-  background-color: $end_color;
+// #end {
+//   background-image: url("assets/img_stop.png"); 
+//   background-color: $end_color;
+//   &:hover {
+//     background-color: $end_color_hover;
+//   }
+//   &:active {
+//     background-color: $end_color_active;
+//   }
+// }
+#cc {
+  background-image: url("assets/img_cc.png"); 
+  background-color: $cc_color;
   &:hover {
-    background-color: $end_color_hover;
+    background-color: $cc_color_hover;
   }
   &:active {
-    background-color: $end_color_active;
+    background-color: $cc_color_active;
   }
 }
 #down {
@@ -195,8 +220,10 @@ body {
   color: inherit;
   background-color: white;
   padding-top: 5px;
+  transition: all 0.34s;
+  border-radius: 5px;
   &:hover {
-    background-color: #EDEDED;
+    background-color: $cc_color;
   }
   &:active {
     background-color: $accent_color;
@@ -230,10 +257,11 @@ body {
   
 // }
 .scroll {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 250px);
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100% !important;
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
   background-color: $back_color;
@@ -262,30 +290,30 @@ body {
   background-color: #726b5e;
   border: solid 1px black;
 }
-#delete {
-  background-color: $end_color;
-  height: 20px;
-  width: 20px;
-  position: relative;
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 50%;
-  background-image: url("assets/img_delete.png");
-  background-size: 20px 20px;
-  overflow: hidden;
-  box-shadow: $shadow;
-  transition: all 0.34s;
-  &:hover {
-    box-shadow: $shadow_hover;
-    background-color: $end_color_hover;
-    background-image: url("assets/img_delete_hover.png"); 
-  }
-  &:active {
-    box-shadow: 2px 2px 4px #434343a5;
-    background-color: $end_color_active;
-  }
-}
+// #delete {
+//   background-color: $end_color;
+//   height: 20px;
+//   width: 20px;
+//   position: relative;
+//   float: right;
+//   margin-right: 5px;
+//   margin-bottom: 5px;
+//   border-radius: 50%;
+//   background-image: url("assets/img_delete.png");
+//   background-size: 20px 20px;
+//   overflow: hidden;
+//   box-shadow: $shadow;
+//   transition: all 0.34s;
+//   &:hover {
+//     box-shadow: $shadow_hover;
+//     background-color: $end_color_hover;
+//     background-image: url("assets/img_delete_hover.png"); 
+//   }
+//   &:active {
+//     box-shadow: 2px 2px 4px #434343a5;
+//     background-color: $end_color_active;
+//   }
+// }
 
 
 
@@ -293,4 +321,8 @@ body {
   background-color: #a17fa1;
 }
 
+.subtitle {
+  padding-top: 20px;
+  text-align: center;
+}
 

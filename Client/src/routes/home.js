@@ -31,6 +31,7 @@ import { withHistory } from 'slate-history'
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
   const [restart, setRestart] = useState(false)
+  const [transcript, setTranscript] = useState("")
   const [stopRecording, setStopRecording] = useState(true)
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
@@ -76,6 +77,7 @@ const Home = () => {
                 seenAudioEndTimes.push(key)
                 if (texts[key]) {
                   msgBuffer = msgBuffer + " " + texts[key]
+                  setTranscript(transcript + " " + texts[key])
                 }
               }
             }
@@ -199,18 +201,10 @@ const Home = () => {
       <div id="body">
         {/* <h1>Nodebuddy</h1> */}
         <div className="actions">
-          <div className="action" id="start" onClick={doStartPause}>
-            {/* Start/Pause */}
-            {/* <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Freepik - Flaticon</a> */}
-          </div>
-          <div className="action" id="end">
-            {/* End */}
-            {/* <a href="https://www.flaticon.com/free-icons/shape" title="shape icons">Shape icons created by Dave Gandy - Flaticon</a> */}
-          </div>
-          <div className="action" id="down">
-            {/* Download */}
-            {/* <a href="https://www.flaticon.com/free-icons/download" title="download icons">Download icons created by Debi Alpa Nugraha - Flaticon</a> */}
-          </div>
+          <div className="action" id="start" onClick={doStartPause}></div>
+          <div className="action" id="cc"></div>
+          {/* <div className="action" id="end"></div> */}
+          <div className="action" id="down"></div>
         </div>
 
         <div id="content">
@@ -223,8 +217,15 @@ const Home = () => {
             {/* {setEditorState(blockMap)} */}
             {/* Scroll to bottom */}
             {/* <div id="delete" onClick={doDelete}></div> */}
+
+            
           </div>
         </div>
+        <div className='subtitle'>
+              <span>
+                {transcript}
+              </span>
+            </div>
       </div>
     </>
   )
