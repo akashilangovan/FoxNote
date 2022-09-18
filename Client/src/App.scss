@@ -260,6 +260,7 @@ body {
 .scroll {
   height: calc(100vh - 180px);
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100% !important;
   margin-top: 20px;
   margin-bottom: 20px;
