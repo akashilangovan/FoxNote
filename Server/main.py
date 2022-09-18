@@ -52,10 +52,10 @@ Transcript:
 
 
 
-@app.post("/")
+@app.get("/")
 def read_root():
     return {"Hello": "World"}
-@app.post("/entityrecognition")
+@app.get("/entityrecognition")
 def entityRecognition(transcript: str): 
     co = cohere.Client('LXa6tCc1qEGSshUxwewWPOJo5HcJ81tW5rkd01Jr')
 
@@ -85,7 +85,7 @@ def entityRecognition(transcript: str):
     return output
     
 
-@app.post("/summarize/")
+@app.get("/summarize/")
 def summarize(transcript: str):
     co = cohere.Client('LXa6tCc1qEGSshUxwewWPOJo5HcJ81tW5rkd01Jr')
 
@@ -107,7 +107,7 @@ def summarize(transcript: str):
 
    
     
-@app.post("/token/")
+@app.get("/token/")
 def getToken():
     PARAMS = {'expires_in':36000}
     HEADERS = {'authorization':'1298b52db56e479f8363db36d5c0e8dc'} 

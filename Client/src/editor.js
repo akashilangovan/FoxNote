@@ -237,6 +237,7 @@ const MarkButton = ({ format, icon }) => {
 const initialValue = [
   {
     type: 'paragraph',
+    align: 'left',
     children: [
       { text: 'This is editable ' },
       { text: 'rich', bold: true },

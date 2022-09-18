@@ -81,9 +81,9 @@ div {
   top: 0px;
   background-color: $primary_color;
   height: $nav_height;
-  padding: 0px 20px 0px 10px;
+  padding: 0px 20px 50px 10px;
   z-index: 100;
-  box-shadow: 0px 5px 5px #a2a2a2;
+  border-bottom: 1px solid black;
 }
 
 #topNav div {
@@ -190,15 +190,13 @@ body {
   }
 }
 
-
-
 .text-button {
   border: 0px;
   color: inherit;
   background-color: white;
   padding-top: 5px;
   &:hover {
-    background-color: $primary_color;
+    background-color: #EDEDED;
   }
   &:active {
     background-color: $accent_color;
@@ -206,14 +204,13 @@ body {
 
 }
 
-
-
 #content {
   display: flex;                  /* establish flex container */
   flex-direction: row;            /* default value; can be omitted */
   flex-wrap: wrap;              /* default value; can be omitted */
   justify-content: space-between; /* switched from default (flex-start, see below) */
 }
+
 #content .cont {
   width: 100vw;
   background-color: $secondary_color;
@@ -221,8 +218,9 @@ body {
   margin-bottom: 20px;
   width: 100%;
   padding: 15px 15px 0px 15px;
-  
-  
+  margin-left: 125px;
+  margin-right: 125px;
+  border: 2px #EEEEEE solid;
 }
 // #content #live_wrapper {
   
