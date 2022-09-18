@@ -221,11 +221,10 @@ body {
 }
 
 .scroll {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 160px);
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100% !important;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
   background-color: #ffffff;
