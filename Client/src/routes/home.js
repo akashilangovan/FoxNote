@@ -33,6 +33,8 @@ const Home = () => {
   const [restart, setRestart] = useState(false)
   const [transcript, setTranscript] = useState("")
   const [stopRecording, setStopRecording] = useState(true)
+  const [entities, setEntities] = useState({})
+  const [buffer, setBuffer] = useState("")
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
   let isRecording = false;
@@ -65,6 +67,7 @@ const Home = () => {
 
         const texts = {};
         socket.onmessage = (message) => {
+          let msgBuffer = buffer
           const res = JSON.parse(message.data);
           console.log(res)
           if (res.message_type == "FinalTranscript") {
@@ -72,6 +75,7 @@ const Home = () => {
             const keys = Object.keys(texts);
             keys.sort((a, b) => a - b);
             for (const key of keys) {
+              console.log("KEY", texts[key])
               if (key in seenAudioEndTimes) {
               } else {
                 seenAudioEndTimes.push(key)
@@ -81,25 +85,31 @@ const Home = () => {
                 }
               }
             }
-            let splitPeriods = msgBuffer.split(".")
-            while (splitPeriods.length > 6 && msgBuffer.length > 200) {
-              msgBuffer = msgBuffer.split(".")
+            setBuffer(msgBuffer)
+            msgBuffer = msgBuffer.split(".")
+            //while (msgBuffer.length > 5 && msgBuffer.join(".").length > 200) {
               message = ""
-              while ((message.split(".").length < 6 || message.length < 200) && msgBuffer.length) {
+              while ((message.split(".").length < 5 || message.length < 200) && msgBuffer.length) {
                 message += msgBuffer.pop(0) + "."
                 console.log("BUFSDF", msgBuffer)
               }
+              setBuffer(msgBuffer.join("."))
               fetch("http://localhost:8000/summarize/?transcript=" + encodeURIComponent(message), {
                 method: "GET"
               }).then(res => {
                 return res.json()
               }).then(data => {
-                console.log(data)
-                updateLiveTranscript(data.text.trim())
+                if (data.text != "") {
+                  setEntities(Object.assign({}, entities, data.entities))
+                  updateLiveTranscript(data.text.trim())
+                  for (let e in Object.keys(entities)) {
+                    console.log("SDLKJ", entities[e])
+                  }
+                }
               });
-              msgBuffer = ""
-              console.log(msgBuffer.length)
-            }
+              console.log(buffer.length)
+              console.log(buffer, "BUFFFFERRRR")
+            //}
           }
         }
 
@@ -126,7 +136,7 @@ const Home = () => {
                 type: 'audio',
                 mimeType: 'audio/webm;codecs=pcm', // endpoint requires 16bit PCM audio
                 recorderType: StereoAudioRecorder,
-                timeSlice: 1250, // set 250 ms intervals of data that sends to AAI
+                timeSlice: 1500, // set 250 ms intervals of data that sends to AAI
                 desiredSampRate: 16000,
                 numberOfAudioChannels: 1, // real-time requires only one channel
                 bufferSize: 4096,

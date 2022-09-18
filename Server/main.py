@@ -50,14 +50,14 @@ Keywords: Anxiety, Judgement, Social
 Transcript: 
 """
 
-
+previous_text = "hello. hello."
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 @app.get("/entityrecognition")
 def entityRecognition(transcript: str): 
-    co = cohere.Client('LXa6tCc1qEGSshUxwewWPOJo5HcJ81tW5rkd01Jr')
+    co = cohere.Client('8ar2TSogqtodyM5vOADhgEO4thKJ0CtphXTfgA8l')
 
     engineered_prompt = PROMPT1 + transcript + "\n\nKeywords:"
     response = co.generate(
@@ -87,7 +87,7 @@ def entityRecognition(transcript: str):
 
 @app.get("/summarize/")
 def summarize(transcript: str):
-    co = cohere.Client('LXa6tCc1qEGSshUxwewWPOJo5HcJ81tW5rkd01Jr')
+    co = cohere.Client('8ar2TSogqtodyM5vOADhgEO4thKJ0CtphXTfgA8l')
 
     engineered_prompt = PROMPT + transcript + "\n\nTLDR: "
     
@@ -103,7 +103,34 @@ def summarize(transcript: str):
     text = response.generations[0].text
     if "\n" in text:
         text = text[:text.index("\n")]
-    return {"text": text}
+    
+    out_text = text
+        
+    engineered_prompt = PROMPT1 + transcript + "\n\nKeywords:"
+    response = co.generate(
+        model='large',
+        prompt=engineered_prompt,
+        stop_sequences=['--'],
+        max_tokens=50,
+        temperature=0.92,
+        num_generations=1,
+    )
+    text = response.generations[0].text
+    if "\n" in text:
+        text = text[:text.index("\n")]
+    wiki_wiki = wikipediaapi.Wikipedia('en')
+    output = {}
+    words = text.split(',')
+    
+    for word in words:
+    
+        word = word.strip()
+        page_py = wiki_wiki.page(word)
+    
+        if page_py.exists():
+            output[word] = page_py.fullurl
+            
+    return {"text": out_text, "entities": output}
 
    
     
