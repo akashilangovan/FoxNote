@@ -245,16 +245,7 @@ const Home = () => {
             </div>
             {/* {setEditorState(blockMap)} */}
             {/* Scroll to bottom */}
-            <div id="delete" onClick={doDelete}></div>
-          </div>
-          <div class="cont" id="live_wrapper">
-            <h2>Live Transcription</h2>
-            <div className="scroll">
-              {liveTranscript}
-            </div>
-            {/* live data here */}
-
-            {/* Scroll to bottom */}
+            {/* <div id="delete" onClick={doDelete}></div> */}
           </div>
         </div>
       </div>
