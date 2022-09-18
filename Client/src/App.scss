@@ -24,16 +24,28 @@ $shadow: 1px 1px 5px #000000b9;
 $shadow_hover: 3px 3px 6px #00000082;
 $shadow_active: 2px 2px 4px #000000de;
 
-$primary_color: #141414;
-$secondary_color: #3f3f3f;
-$back_color: #595959;
-$white_color: #f6e6f6;
+$accent_color: rgb(255, 182, 46);
+
+// $primary_color: #141414;
+// $secondary_color: #3f3f3f;
+// $back_color: #595959;
+
+// $text_color: #bdbdbd;
+
+
+$primary_color: #ffffff;
+$secondary_color: #ffffff;
+$back_color: #ffffff;
+
+$text_color: #000000;
+
+
 
 $border_radius_default: 5px;
 
 body {
   background-color: $back_color;
-  color: #bdbdbd;
+  color: $text_color;
 }
 
 
@@ -69,20 +81,22 @@ div {
   top: 0px;
   background-color: $primary_color;
   height: $nav_height;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 20px 0px 10px;
   z-index: 100;
+  box-shadow: 0px 5px 5px #a2a2a2;
 }
 
 #topNav div {
   height: $nav_height;
   line-height: $nav_height;
-  color: white;
+  color: black;
 }
 #topNav .left {
   float: left;
   font-size: $nav_height * 0.7;
 }
 #topNav .right {
+  font-size: $nav_height * 0.32;
   float: right;
 }
 #topNav #header {
@@ -104,6 +118,9 @@ div {
 
 #body {
   padding: 20px 10px 20px 10px;
+}
+body {
+  overflow: hidden;
 }
 
 .actions {
@@ -175,6 +192,22 @@ div {
 
 
 
+.text-button {
+  border: 0px;
+  color: inherit;
+  background-color: white;
+  padding-top: 5px;
+  &:hover {
+    background-color: $primary_color;
+  }
+  &:active {
+    background-color: $accent_color;
+  }
+
+}
+
+
+
 #content {
   display: flex;                  /* establish flex container */
   flex-direction: row;            /* default value; can be omitted */
@@ -187,7 +220,9 @@ div {
   border-radius: $border_radius_default;
   margin-bottom: 20px;
   width: 100%;
-  padding: 0px 15px;
+  padding: 15px 15px 0px 15px;
+  
+  
 }
 // #content #live_wrapper {
   
@@ -197,7 +232,7 @@ div {
   
 // }
 .scroll {
-  height: 200px;
+  height: calc(100vh - 180px);
   overflow-y: scroll;
   width: 100% !important;
   margin-top: 20px;
@@ -205,6 +240,8 @@ div {
   padding: 10px;
   background-color: $back_color;
   border-radius: $border_radius_default;
+  // border: solid 1px #b9b9b9;
+
 }
 
 

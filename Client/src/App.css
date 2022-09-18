@@ -1,6 +1,6 @@
 body {
-  background-color: #595959;
-  color: #bdbdbd;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 /* width */
@@ -23,7 +23,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #141414;
+  background: #ffffff;
 }
 
 div {
@@ -35,16 +35,18 @@ div {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
-  background-color: #141414;
+  background-color: #ffffff;
   height: 45px;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 20px 0px 10px;
   z-index: 100;
+  -webkit-box-shadow: 0px 5px 5px #a2a2a2;
+          box-shadow: 0px 5px 5px #a2a2a2;
 }
 
 #topNav div {
   height: 45px;
   line-height: 45px;
-  color: white;
+  color: black;
 }
 
 #topNav .left {
@@ -53,6 +55,7 @@ div {
 }
 
 #topNav .right {
+  font-size: 14.4px;
   float: right;
 }
 
@@ -73,6 +76,10 @@ div {
 
 #body {
   padding: 20px 10px 20px 10px;
+}
+
+body {
+  overflow: hidden;
 }
 
 .actions {
@@ -157,6 +164,21 @@ div {
   background-color: #2f2f2f;
 }
 
+.text-button {
+  border: 0px;
+  color: inherit;
+  background-color: white;
+  padding-top: 5px;
+}
+
+.text-button:hover {
+  background-color: #ffffff;
+}
+
+.text-button:active {
+  background-color: #ffb62e;
+}
+
 #content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -178,21 +200,21 @@ div {
 
 #content .cont {
   width: 100vw;
-  background-color: #3f3f3f;
+  background-color: #ffffff;
   border-radius: 5px;
   margin-bottom: 20px;
   width: 100%;
-  padding: 0px 15px;
+  padding: 15px 15px 0px 15px;
 }
 
 .scroll {
-  height: 200px;
+  height: calc(100vh - 180px);
   overflow-y: scroll;
   width: 100% !important;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #595959;
+  background-color: #ffffff;
   border-radius: 5px;
 }
 
@@ -203,7 +225,7 @@ div {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #595959;
+  background-color: #ffffff;
   border-radius: 5px;
 }
 

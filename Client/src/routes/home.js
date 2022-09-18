@@ -238,8 +238,8 @@ const Home = () => {
 
         <div id="content">
           
-          <div class="cont" id="summary_wrapper">
-            <h2>Summary</h2>
+          <div className="cont" id="summary_wrapper">
+            {/* <h2>Summary</h2> */}
             <div>
               {MyEditor()}
             </div>
