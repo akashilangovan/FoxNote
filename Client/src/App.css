@@ -10,7 +10,8 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
+  -webkit-box-shadow: inset 0 0 5px grey;
+          box-shadow: inset 0 0 5px grey;
   border-radius: 5px;
 }
 
@@ -26,17 +27,21 @@ body {
 }
 
 div {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #topNav {
+  position: -webkit-sticky;
   position: sticky;
   top: 0px;
   background-color: #ffffff;
   height: 45px;
-  padding: 0px 20px 50px 10px;
+  padding: 0px 20px 0px 10px;
   z-index: 100;
   border-bottom: 1px solid black;
+  -webkit-box-sizing: content-box !important;
+          box-sizing: content-box !important;
 }
 
 #topNav div {
@@ -53,6 +58,7 @@ div {
 #topNav .right {
   font-size: 14.4px;
   float: right;
+  margin-left: 27px;
 }
 
 #topNav #header {
@@ -92,58 +98,72 @@ body {
   margin-top: 10px;
   background-size: 45px 45px;
   overflow: hidden;
+  -webkit-transition: all 0.34s;
   transition: all 0.34s;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7254901961);
+  -webkit-box-shadow: 1px 1px 5px #000000b9;
+          box-shadow: 1px 1px 5px #000000b9;
 }
+
 .actions .action:hover {
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5098039216);
+  -webkit-box-shadow: 3px 3px 6px #00000082;
+          box-shadow: 3px 3px 6px #00000082;
 }
+
 .actions .action:active {
-  box-shadow: 2px 2px 4px rgba(67, 67, 67, 0.6470588235);
+  -webkit-box-shadow: 2px 2px 4px #434343a5;
+          box-shadow: 2px 2px 4px #434343a5;
 }
 
 #start {
   background-image: url("assets/img_record.png");
-  background-color: #148d14;
+  background-color: #ec6161;
 }
+
 #start:hover {
-  background-color: #33af33;
+  background-color: #f37d7d;
 }
+
 #start:active {
-  background-color: #117411;
+  background-color: #d65252;
 }
 
 #pause {
   background-image: url("assets/img_pause.png");
   background-color: #dbc900;
 }
+
 #pause:hover {
   background-color: #f1e23a;
 }
+
 #pause:active {
   background-color: #dbb700;
 }
 
-#end {
-  background-image: url("assets/img_stop.png");
-  background-color: #ec6161;
+#cc {
+  background-image: url("assets/img_cc.png");
+  background-color: #989898;
 }
-#end:hover {
-  background-color: #f37d7d;
+
+#cc:hover {
+  background-color: #b9b9b9;
 }
-#end:active {
-  background-color: #d65252;
+
+#cc:active {
+  background-color: #7e7e7e;
 }
 
 #down {
   background-image: url("assets/img_download.png");
-  background-color: #434343;
+  background-color: #989898;
 }
+
 #down:hover {
-  background-color: #7a7a7a;
+  background-color: #b9b9b9;
 }
+
 #down:active {
-  background-color: #2f2f2f;
+  background-color: #7e7e7e;
 }
 
 .text-button {
@@ -152,18 +172,32 @@ body {
   background-color: white;
   padding-top: 5px;
 }
+
 .text-button:hover {
   background-color: #EDEDED;
 }
+
 .text-button:active {
-  background-color: rgb(255, 182, 46);
+  background-color: #ffb62e;
 }
 
 #content {
-  display: flex; /* establish flex container */
-  flex-direction: row; /* default value; can be omitted */
-  flex-wrap: wrap; /* default value; can be omitted */
-  justify-content: space-between; /* switched from default (flex-start, see below) */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* establish flex container */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  /* default value; can be omitted */
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  /* default value; can be omitted */
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* switched from default (flex-start, see below) */
 }
 
 #content .cont {
@@ -205,33 +239,7 @@ body {
   border: solid 1px black;
 }
 
-#delete {
-  background-color: #ec6161;
-  height: 20px;
-  width: 20px;
-  position: relative;
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 50%;
-  background-image: url("assets/img_delete.png");
-  background-size: 20px 20px;
-  overflow: hidden;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7254901961);
-  transition: all 0.34s;
-}
-#delete:hover {
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5098039216);
-  background-color: #f37d7d;
-  background-image: url("assets/img_delete_hover.png");
-}
-#delete:active {
-  box-shadow: 2px 2px 4px rgba(67, 67, 67, 0.6470588235);
-  background-color: #d65252;
-}
-
 #footer {
   background-color: #a17fa1;
 }
-
 /*# sourceMappingURL=App.css.map */

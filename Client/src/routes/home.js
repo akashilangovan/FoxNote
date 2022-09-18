@@ -222,18 +222,10 @@ const Home = () => {
       <div id="body">
         {/* <h1>Nodebuddy</h1> */}
         <div className="actions">
-          <div className="action" id="start" onClick={doStartPause}>
-            {/* Start/Pause */}
-            {/* <a href="https://www.flaticon.com/free-icons/play" title="play icons">Play icons created by Freepik - Flaticon</a> */}
-          </div>
-          <div className="action" id="end">
-            {/* End */}
-            {/* <a href="https://www.flaticon.com/free-icons/shape" title="shape icons">Shape icons created by Dave Gandy - Flaticon</a> */}
-          </div>
-          <div className="action" id="down">
-            {/* Download */}
-            {/* <a href="https://www.flaticon.com/free-icons/download" title="download icons">Download icons created by Debi Alpa Nugraha - Flaticon</a> */}
-          </div>
+          <div className="action" id="start" onClick={doStartPause}></div>
+          <div className="action" id="cc"></div>
+          {/* <div className="action" id="end"></div> */}
+          <div className="action" id="down"></div>
         </div>
 
         <div id="content">

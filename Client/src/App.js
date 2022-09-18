@@ -16,6 +16,7 @@ function App() {
       <div id="topNav">
         <Link to="/home"><div className="left" id="logo"></div></Link>
         <Link to="/home"><div className="left" id="header">FoxNote</div></Link>
+        <Link to="/about"><div className="right">login</div></Link>
         <Link to="/about"><div className="right">about</div></Link>
       </div>
 
