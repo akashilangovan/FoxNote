@@ -44,7 +44,7 @@ def summarize(transcript: str):
     print("SDFDSG", str)
     co = cohere.Client('LXa6tCc1qEGSshUxwewWPOJo5HcJ81tW5rkd01Jr')
 
-    engineered_prompt = PROMPT + transcript + "\n--\nTLDR: "
+    engineered_prompt = PROMPT + transcript + "\n\nTLDR: "
     
     response = co.generate(
         model='large',
