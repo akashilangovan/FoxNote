@@ -1,3 +1,8 @@
+body {
+  background-color: #595959;
+  color: #bdbdbd;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -18,7 +23,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #840684;
+  background: #141414;
 }
 
 div {
@@ -30,7 +35,7 @@ div {
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
-  background-color: #840684;
+  background-color: #141414;
   height: 45px;
   padding: 0px 10px 0px 10px;
   z-index: 100;
@@ -44,6 +49,7 @@ div {
 
 #topNav .left {
   float: left;
+  font-size: 31.5px;
 }
 
 #topNav .right {
@@ -73,6 +79,7 @@ div {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 20;
 }
 
 .actions .action {
@@ -84,13 +91,13 @@ div {
   overflow: hidden;
   -webkit-transition: all 0.34s;
   transition: all 0.34s;
-  -webkit-box-shadow: 1px 1px 5px #6565656b;
-          box-shadow: 1px 1px 5px #6565656b;
+  -webkit-box-shadow: 1px 1px 5px #000000b9;
+          box-shadow: 1px 1px 5px #000000b9;
 }
 
 .actions .action:hover {
-  -webkit-box-shadow: 3px 3px 6px #9d9d9db9;
-          box-shadow: 3px 3px 6px #9d9d9db9;
+  -webkit-box-shadow: 3px 3px 6px #00000082;
+          box-shadow: 3px 3px 6px #00000082;
 }
 
 .actions .action:active {
@@ -171,7 +178,7 @@ div {
 
 #content .cont {
   width: 100vw;
-  background-color: #e492e4;
+  background-color: #3f3f3f;
   border-radius: 5px;
   margin-bottom: 20px;
   width: 100%;
@@ -185,7 +192,18 @@ div {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #f6e6f6;
+  background-color: #595959;
+  border-radius: 5px;
+}
+
+.editorScroll {
+  height: 50px;
+  overflow-y: scroll;
+  width: 100% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #595959;
   border-radius: 5px;
 }
 
@@ -206,15 +224,15 @@ div {
   background-image: url("assets/img_delete.png");
   background-size: 20px 20px;
   overflow: hidden;
-  -webkit-box-shadow: 1px 1px 5px #6565656b;
-          box-shadow: 1px 1px 5px #6565656b;
+  -webkit-box-shadow: 1px 1px 5px #000000b9;
+          box-shadow: 1px 1px 5px #000000b9;
   -webkit-transition: all 0.34s;
   transition: all 0.34s;
 }
 
 #delete:hover {
-  -webkit-box-shadow: 3px 3px 6px #9d9d9db9;
-          box-shadow: 3px 3px 6px #9d9d9db9;
+  -webkit-box-shadow: 3px 3px 6px #00000082;
+          box-shadow: 3px 3px 6px #00000082;
   background-color: #f37d7d;
   background-image: url("assets/img_delete_hover.png");
 }

@@ -240,7 +240,7 @@ const Home = () => {
           
           <div class="cont" id="summary_wrapper">
             <h2>Summary</h2>
-            <div className="scroll">
+            <div>
               {MyEditor()}
             </div>
             {/* {setEditorState(blockMap)} */}

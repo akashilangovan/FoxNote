@@ -22,15 +22,21 @@ $down_color: #434343;
 $down_color_hover: #7a7a7a;
 $down_color_active: #2f2f2f;
 
-$shadow: 1px 1px 5px #6565656b;
-$shadow_hover: 3px 3px 6px #9d9d9db9;
-$shadow_active: 2px 2px 4px #434343a5;
+$shadow: 1px 1px 5px #000000b9;
+$shadow_hover: 3px 3px 6px #00000082;
+$shadow_active: 2px 2px 4px #000000de;
 
-$primary_color: #840684;
-$secondary_color: #e492e4;
+$primary_color: #141414;
+$secondary_color: #3f3f3f;
+$back_color: #595959;
 $white_color: #f6e6f6;
 
 $border_radius_default: 5px;
+
+body {
+  background-color: $back_color;
+  color: #bdbdbd;
+}
 
 
 /* width */
@@ -76,6 +82,7 @@ div {
 }
 #topNav .left {
   float: left;
+  font-size: $nav_height * 0.7;
 }
 #topNav .right {
   float: right;
@@ -105,6 +112,7 @@ div {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  z-index: 20;
 }
 .actions .action {
   width: $icon_size;
@@ -197,9 +205,20 @@ div {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: $white_color;
+  background-color: $back_color;
   border-radius: $border_radius_default;
+}
 
+
+.editorScroll {
+  height: 50px;
+  overflow-y: scroll;
+  width: 100% !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: $back_color;
+  border-radius: $border_radius_default;
 }
 
 

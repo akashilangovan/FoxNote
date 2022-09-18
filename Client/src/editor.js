@@ -50,6 +50,7 @@ const RichTextEditor = (props) => {
         placeholder="Enter some rich text…"
         spellCheck
         autoFocus
+        class="scroll"
         onKeyDown={event => {
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event)) {

@@ -25,7 +25,7 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
 
-
+{/* 
       <div id="footer">
         <p>peson 1</p>
         <p>peson 2</p>
@@ -35,7 +35,7 @@ function App() {
         
 
       </div>
-
+ */}
 
 
 
