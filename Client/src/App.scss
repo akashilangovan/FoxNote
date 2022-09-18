@@ -22,8 +22,8 @@ $pause_color_active: #dbb700;
 // $end_color_hover: #f37d7d;
 // $end_color_active: #d65252;
 
-$down_color: #989898;
-$down_color_hover: #b9b9b9;
+$down_color: #b7b7b7;
+$down_color_hover: #d7d7d7;
 $down_color_active: #7e7e7e;
 
 $cc_color: $down_color;
@@ -34,7 +34,7 @@ $shadow: 1px 1px 5px #000000b9;
 $shadow_hover: 3px 3px 6px #00000082;
 $shadow_active: 2px 2px 4px #000000de;
 
-$accent_color: rgb(255, 182, 46);
+$accent_color: #7CA6FF;
 
 // $primary_color: #141414;
 // $secondary_color: #3f3f3f;
@@ -101,6 +101,10 @@ div {
   height: $nav_height;
   line-height: $nav_height;
   color: black;
+  transition: all 0.34s;
+  &:hover{
+    color: $accent_color;
+  }
 }
 #topNav .left {
   float: left;
@@ -118,10 +122,10 @@ div {
 }
 
 #logo {
-  background-image: url("assets/logo.png");
+  background-image: url("assets/img_logo.png");
   height: $nav_height;
   width: $nav_height;
-  border-radius: 50%;
+  // border-radius: 50%;
   background-size: $nav_height $nav_height;
   margin-right: 20px;
   
@@ -217,8 +221,10 @@ body {
   color: inherit;
   background-color: white;
   padding-top: 5px;
+  transition: all 0.34s;
+  border-radius: 5px;
   &:hover {
-    background-color: #EDEDED;
+    background-color: $cc_color;
   }
   &:active {
     background-color: $accent_color;
