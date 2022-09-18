@@ -258,7 +258,7 @@ body {
   
 // }
 .scroll {
-  height: calc(100vh - 160px);
+  height: calc(100vh - 250px);
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100% !important;
@@ -322,4 +322,8 @@ body {
   background-color: #a17fa1;
 }
 
+.subtitle {
+  padding-top: 20px;
+  text-align: center;
+}
 

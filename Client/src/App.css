@@ -10,8 +10,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 5px grey;
-          box-shadow: inset 0 0 5px grey;
+  box-shadow: inset 0 0 5px grey;
   border-radius: 5px;
 }
 
@@ -27,8 +26,7 @@ body {
 }
 
 div {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #topNav {
@@ -40,18 +38,15 @@ div {
   padding: 0px 20px 0px 10px;
   z-index: 100;
   border-bottom: 1px solid black;
-  -webkit-box-sizing: content-box !important;
-          box-sizing: content-box !important;
+  box-sizing: content-box !important;
 }
 
 #topNav div {
   height: 45px;
   line-height: 45px;
   color: black;
-  -webkit-transition: all 0.34s;
   transition: all 0.34s;
 }
-
 #topNav div:hover {
   color: #7CA6FF;
 }
@@ -103,31 +98,23 @@ body {
   margin-top: 10px;
   background-size: 45px 45px;
   overflow: hidden;
-  -webkit-transition: all 0.34s;
   transition: all 0.34s;
-  -webkit-box-shadow: 1px 1px 5px #000000b9;
-          box-shadow: 1px 1px 5px #000000b9;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7254901961);
 }
-
 .actions .action:hover {
-  -webkit-box-shadow: 3px 3px 6px #00000082;
-          box-shadow: 3px 3px 6px #00000082;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5098039216);
 }
-
 .actions .action:active {
-  -webkit-box-shadow: 2px 2px 4px #434343a5;
-          box-shadow: 2px 2px 4px #434343a5;
+  box-shadow: 2px 2px 4px rgba(67, 67, 67, 0.6470588235);
 }
 
 #start {
   background-image: url("assets/img_record.png");
   background-color: #ec6161;
 }
-
 #start:hover {
   background-color: #f37d7d;
 }
-
 #start:active {
   background-color: #d65252;
 }
@@ -136,11 +123,9 @@ body {
   background-image: url("assets/img_pause.png");
   background-color: #dbc900;
 }
-
 #pause:hover {
   background-color: #f1e23a;
 }
-
 #pause:active {
   background-color: #dbb700;
 }
@@ -149,11 +134,9 @@ body {
   background-image: url("assets/img_cc.png");
   background-color: #b7b7b7;
 }
-
 #cc:hover {
   background-color: #d7d7d7;
 }
-
 #cc:active {
   background-color: #7e7e7e;
 }
@@ -162,11 +145,9 @@ body {
   background-image: url("assets/img_download.png");
   background-color: #b7b7b7;
 }
-
 #down:hover {
   background-color: #d7d7d7;
 }
-
 #down:active {
   background-color: #7e7e7e;
 }
@@ -176,36 +157,21 @@ body {
   color: inherit;
   background-color: white;
   padding-top: 5px;
-  -webkit-transition: all 0.34s;
   transition: all 0.34s;
   border-radius: 5px;
 }
-
 .text-button:hover {
   background-color: #b7b7b7;
 }
-
 .text-button:active {
   background-color: #7CA6FF;
 }
 
 #content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  /* establish flex container */
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  /* default value; can be omitted */
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  /* default value; can be omitted */
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  /* switched from default (flex-start, see below) */
+  display: flex; /* establish flex container */
+  flex-direction: row; /* default value; can be omitted */
+  flex-wrap: wrap; /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
 }
 
 #content .cont {
@@ -221,7 +187,7 @@ body {
 }
 
 .scroll {
-  height: calc(100vh - 160px);
+  height: calc(100vh - 250px);
   overflow-y: scroll;
   overflow-x: hidden;
   width: 100% !important;
@@ -250,4 +216,8 @@ body {
 #footer {
   background-color: #a17fa1;
 }
-/*# sourceMappingURL=App.css.map */
+
+.subtitle {
+  padding-top: 20px;
+  text-align: center;
+}/*# sourceMappingURL=App.css.map */

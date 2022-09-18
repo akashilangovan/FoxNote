@@ -32,6 +32,7 @@ const bulletItem = "unordered-list-item";
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
   const [restart, setRestart] = useState(false)
+  const [transcript, setTranscript] = useState("")
   const [stopRecording, setStopRecording] = useState(true)
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
@@ -77,6 +78,7 @@ const Home = () => {
                 seenAudioEndTimes.push(key)
                 if (texts[key]) {
                   msgBuffer = msgBuffer + " " + texts[key]
+                  setTranscript(transcript + " " + texts[key])
                 }
               }
             }
@@ -238,8 +240,15 @@ const Home = () => {
             {/* {setEditorState(blockMap)} */}
             {/* Scroll to bottom */}
             {/* <div id="delete" onClick={doDelete}></div> */}
+
+            
           </div>
         </div>
+        <div className='subtitle'>
+              <span>
+                {transcript}
+              </span>
+            </div>
       </div>
     </>
   )
