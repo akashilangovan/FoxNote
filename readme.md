@@ -21,3 +21,6 @@ There's a plethora of options in terms of expanding FoxNote's functionality. Fir
 
 ## Video Demo
 https://www.youtube.com/watch?v=wL0IyKfK0sU&ab_channel=AlamgirKhan
+
+## Link to Devpost
+https://devpost.com/software/foxnote
