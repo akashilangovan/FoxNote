@@ -27,7 +27,6 @@ import { withHistory } from 'slate-history'
 //   }
 // });
 
-const bulletItem = "unordered-list-item";
 
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
@@ -39,7 +38,7 @@ const Home = () => {
   let socket;
   let recorder;
   let seenAudioEndTimes = []
-  let msgBuffer = ''
+  var msgBuffer = ''
 
   useEffect(() => {
     console.log("Running record")
@@ -80,19 +79,23 @@ const Home = () => {
                 }
               }
             }
-            while (msgBuffer.split(".").length > 6) {
-              console.log(msgBuffer)
-              message = msgBuffer.split(".").slice(0, 6).join(".")
-              let dataObj = {"transcript": message}
+            let splitPeriods = msgBuffer.split(".")
+            while (splitPeriods.length > 6 && msgBuffer.length > 200) {
+              msgBuffer = msgBuffer.split(".")
+              message = ""
+              while ((message.split(".").length < 6 || message.length < 200) && msgBuffer.length) {
+                message += msgBuffer.pop(0) + "."
+                console.log("BUFSDF", msgBuffer)
+              }
               fetch("http://localhost:8000/summarize/?transcript=" + encodeURIComponent(message), {
                 method: "GET"
               }).then(res => {
                 return res.json()
               }).then(data => {
                 console.log(data)
-                updateLiveTranscript(data.text)
+                updateLiveTranscript(data.text.trim())
               });
-              msgBuffer = msgBuffer.split(".").slice(6).join(".")
+              msgBuffer = ""
               console.log(msgBuffer.length)
             }
           }
@@ -170,37 +173,11 @@ const Home = () => {
     Transforms.insertNodes(editor, text)
   }
 
-  const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty(),
-  );
-  function makeBullets(input) {
-    if (RichUtils.getCurrentBlockType(input) != bulletItem) {
-      setEditorState(RichUtils.toggleBlockType(input, bulletItem));
-    } else {
-      setEditorState(input);
-     
-    }
-  }
-
-  function addBullet(string) {
-    
-  }
-  
   function MyEditor() { 
     return (
       <RichTextEditor editor={editor}/>
     )
   }
-  
-  function doDelete() {
-    let contentState = editorState.getCurrentContent();
-    var last = contentState.getLastBlock();
-    var blockArray = contentState.getBlocksAsArray();
-    blockArray.pop(); // rmemove last
-    var newContentState = ContentState.createFromBlockArray(blockArray);
-    var newEditorState = EditorState.createWithContent(newContentState)
-    makeBullets(newEditorState);
-  };
 
   // var blockArray = []
 
