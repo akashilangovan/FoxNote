@@ -9,6 +9,8 @@ import {
   Element as SlateElement,
 } from 'slate'
 import { withHistory } from 'slate-history'
+import Icon from "@mui/material/Icon"
+import "./index.css"
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -20,13 +22,13 @@ const HOTKEYS = {
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
-const RichTextEditor = () => {
+const RichTextEditor = (props) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
-  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate editor={props.editor} value={initialValue}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
       <div>
         <MarkButton format="bold" icon="format_bold" />
         <MarkButton format="italic" icon="format_italic" />
@@ -53,7 +55,7 @@ const RichTextEditor = () => {
             if (isHotkey(hotkey, event)) {
               event.preventDefault()
               const mark = HOTKEYS[hotkey]
-              toggleMark(editor, mark)
+              toggleMark(props.editor, mark)
             }
           }
         }}
@@ -200,7 +202,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 const BlockButton = ({ format, icon }) => {
   const editor = useSlate()
   return (
-    <button
+    <button className='text-button'
       active={isBlockActive(
         editor,
         format,
@@ -211,7 +213,7 @@ const BlockButton = ({ format, icon }) => {
         toggleBlock(editor, format)
       }}
     >
-      {icon}
+      <Icon>{icon}</Icon>
     </button>
   )
 }
@@ -219,19 +221,19 @@ const BlockButton = ({ format, icon }) => {
 const MarkButton = ({ format, icon }) => {
   const editor = useSlate()
   return (
-    <button
+    <button className='text-button'
       active={isMarkActive(editor, format)}
       onMouseDown={event => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
     >
-      {icon}
+        <Icon>{icon}</Icon>
     </button>
   )
 }
 
-const initialValue: Descendant[] = [
+const initialValue = [
   {
     type: 'paragraph',
     children: [
@@ -247,15 +249,9 @@ const initialValue: Descendant[] = [
   {
     type: 'paragraph',
     children: [
-      {
-        text:
-          "Since it's rich text, you can do things like turn a selection of text ",
-      },
-      { text: 'bold', bold: true },
-      {
-        text:
-          ', or add a semantically rendered block quote in the middle of the page, like this:',
-      },
+      {text: "Since it's rich text, you can do things like turn a selection of text "},
+      {text: 'bold', bold: true },
+      {text: ', or add a semantically rendered block quote in the middle of the page, like this:'},
     ],
   },
   {

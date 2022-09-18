@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import RecordRTC, {StereoAudioRecorder} from 'recordrtc';
 import { Outlet, Link} from "react-router-dom";
 import "../App.css"
-import {Editor, EditorState, BlockMapBuilder, ContentBlock, RichUtils, SelectionState, Modifier, ContentState} from 'draft-js';
+import {EditorState, BlockMapBuilder, ContentBlock, RichUtils, SelectionState, Modifier, ContentState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import { createEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import RichTextEditor from '../editor';
+import {
+  Editor,
+  Transforms,
+  createEditor,
+  Descendant,
+  Element as SlateElement,
+} from 'slate'
+import { withHistory } from 'slate-history'
 
 // import {toggleBlockType} from RichUtils;
 // import Immutable from "immutable.js"
@@ -25,6 +32,8 @@ const bulletItem = "unordered-list-item";
 const Home = () => {
   const [startpauseIcon, setStartpauseIcon] = React.useState("start");
   const [restart, setRestart] = useState(false)
+  const [stopRecording, setStopRecording] = useState(true)
+  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
   let isRecording = false;
   let socket;
@@ -34,12 +43,22 @@ const Home = () => {
 
   useEffect(() => {
     console.log("Running record")
-    if (isRecording) { 
-
+    if (stopRecording) { 
+      if (socket) {
+        socket.send(JSON.stringify({terminate_session: true}));
+        socket.close();
+        socket = null;
+      }
+  
+      if (recorder) {
+        recorder.pauseRecording();
+        recorder = null;
+      }
     } else {
       const startSocket = async () => {
         const tkResponse = await fetch('http://localhost:8000/token/'); // get temp session token from server.js (backend)
         const data = await tkResponse.json();
+        
         console.log("Trying to start new stream")
         socket = await new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${data['token']}`);
         console.log("Started new stream")
@@ -61,10 +80,9 @@ const Home = () => {
                 }
               }
             }
-            while (msgBuffer.split(".").length > 5) {
+            while (msgBuffer.split(".").length > 6) {
               console.log(msgBuffer)
-              message = msgBuffer.split(".").slice(0, 5).join(".")
-              console.log("MESG", message)
+              message = msgBuffer.split(".").slice(0, 6).join(".")
               let dataObj = {"transcript": message}
               fetch("http://localhost:8000/summarize/?transcript=" + encodeURIComponent(message), {
                 method: "GET"
@@ -72,8 +90,10 @@ const Home = () => {
                 return res.json()
               }).then(data => {
                 console.log(data)
+                updateLiveTranscript(data.text)
               });
-              msgBuffer = msgBuffer.split(".").slice(5).join(".")
+              msgBuffer = msgBuffer.split(".").slice(6).join(".")
+              console.log(msgBuffer.length)
             }
           }
         }
@@ -101,7 +121,7 @@ const Home = () => {
                 type: 'audio',
                 mimeType: 'audio/webm;codecs=pcm', // endpoint requires 16bit PCM audio
                 recorderType: StereoAudioRecorder,
-                timeSlice: 1000, // set 250 ms intervals of data that sends to AAI
+                timeSlice: 1250, // set 250 ms intervals of data that sends to AAI
                 desiredSampRate: 16000,
                 numberOfAudioChannels: 1, // real-time requires only one channel
                 bufferSize: 4096,
@@ -127,21 +147,27 @@ const Home = () => {
       isRecording = true;
       startSocket()
     }
-  }, [restart])
+  }, [restart, stopRecording])
 
   function doStartPause() {
     if (startpauseIcon == "start") {
       document.getElementById("start").id="pause";
       setStartpauseIcon("pause");
+      setStopRecording(false)
     } else {
       document.getElementById("pause").id="start";
       setStartpauseIcon("start");
+      setStopRecording(true)
     }
   }
 
   const [liveTranscript, setLiveTranscript] = React.useState("He today. We're starting a new chapter, chapter four, about the time value of money, which is something that we tal");
   function updateLiveTranscript(newString) {
-    setLiveTranscript(liveTranscript + newString);
+    const text = {
+      type: 'paragraph',
+      children: [{text: newString}],
+    }
+    Transforms.insertNodes(editor, text)
   }
 
   const [editorState, setEditorState] = React.useState(
@@ -157,20 +183,13 @@ const Home = () => {
     }
   }
 
-  const initialValue = [
-    {
-      type: 'paragraph',
-      children: [{ text: 'A line of text in a paragraph.' }],
-    },
-  ]
-
   function addBullet(string) {
     
   }
   
   function MyEditor() { 
     return (
-      <RichTextEditor/>
+      <RichTextEditor editor={editor}/>
     )
   }
   
